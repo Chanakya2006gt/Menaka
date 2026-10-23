@@ -107,3 +107,6 @@ This document is the historical source of truth for architectural choices, desig
 3. `mkdir -p public/assets/logo && mv public/assets/logo.png public/assets/logo/logo.png` (Isolate logo into dedicated directory)
 4. `npm run build`
 5. `npx playwright test` (14/14 tests passing)
+6. `git init -b main && git add . && git commit -m "feat: Menaka Jewellers mobile-first catalog website"`
+7. `gh repo create Menaka --public --source=. --remote=origin --push`
+8. `git checkout -b dev && git push -u origin dev`
