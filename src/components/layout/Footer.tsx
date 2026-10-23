@@ -25,8 +25,10 @@ export const Footer: React.FC = () => {
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
               <img
-                src="/assets/logo/logo.png"
+                src="/assets/logo/logo.webp"
                 alt={BRAND_NAME}
+                width="48"
+                height="48"
                 className="w-12 h-12 rounded-full border border-gold-400/50 object-cover"
               />
               <div>
@@ -34,13 +36,13 @@ export const Footer: React.FC = () => {
                   MENAKA
                 </span>
                 <span className="text-xs uppercase tracking-ultra text-ivory-300/60 font-serif">
-                  Jewellers &bull; Since 1979
+                  Jewellers &bull; Since 1982
                 </span>
               </div>
             </div>
             
             <p className="text-sm text-ivory-200/80 leading-relaxed font-light">
-              Crafting elegance since 1979 in the historic city of Warangal. Preserving traditional South Indian temple jewellery, certified BIS hallmark gold, and custom bespoke bridal masterpieces.
+              Crafting elegance since 1982 in the historic city of Warangal. Preserving traditional South Indian temple jewellery, certified BIS hallmark gold, and custom bespoke bridal masterpieces.
             </p>
 
             <div className="pt-2">
@@ -48,7 +50,7 @@ export const Footer: React.FC = () => {
                 href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs uppercase tracking-wider text-gold-300 hover:text-gold-200 transition"
+                className="inline-flex items-center gap-2 min-h-[44px] text-xs uppercase tracking-wider text-gold-300 hover:text-gold-200 transition focus:outline-none focus:ring-1 focus:ring-gold-400"
               >
                 <InstagramIcon className="w-4 h-4 text-gold-400" />
                 <span>{INSTAGRAM_HANDLE}</span>
@@ -87,7 +89,7 @@ export const Footer: React.FC = () => {
               </li>
               <li className="flex items-start gap-2.5">
                 <Clock className="w-4 h-4 text-gold-400 shrink-0 mt-0.5" />
-                <span>Custom Designs Ready in 7 Days</span>
+                <span>Bespoke Handcrafted Designs</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <Globe className="w-4 h-4 text-gold-400 shrink-0 mt-0.5" />
@@ -99,24 +101,24 @@ export const Footer: React.FC = () => {
               </li>
               <li className="flex items-start gap-2.5">
                 <Sparkles className="w-4 h-4 text-gold-400 shrink-0 mt-0.5" />
-                <span>Crafting Elegance Since 1979</span>
+                <span>Crafting Elegance Since 1982</span>
               </li>
             </ul>
           </div>
 
-          {/* Col 4: Atelier Enquiry */}
+          {/* Col 4: Direct Enquiry */}
           <div>
             <h4 className="font-serif text-sm uppercase tracking-widest text-gold-300 mb-4 pb-1 border-b border-gold-500/20 inline-block">
-              Personal Concierge
+              Direct Enquiries
             </h4>
-            <p className="text-xs text-ivory-200/80 leading-relaxed mb-4">
-              Connect directly with our master atelier in Warangal for bespoke commissions, bridal trousseau consultations, or design enquiries.
+            <p className="text-xs text-ivory-200/80 leading-relaxed mb-4 font-light">
+              Connect directly with our master goldsmiths in Warangal for custom jewellery orders, bridal consultations, or design enquiries.
             </p>
             <a
               href={buildWhatsAppUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-gold-500 text-burgundy-950 hover:bg-gold-400 font-serif text-xs font-semibold uppercase tracking-wider rounded transition shadow-md"
+              className="w-full flex items-center justify-center gap-2 py-3 px-4 min-h-[44px] bg-gold-500 text-burgundy-950 hover:bg-gold-400 font-serif text-xs font-semibold uppercase tracking-wider rounded transition shadow-md focus:outline-none focus:ring-2 focus:ring-gold-300"
             >
               <MessageCircle className="w-4 h-4" />
               WhatsApp Us
@@ -130,7 +132,7 @@ export const Footer: React.FC = () => {
           <p>
             &copy; {new Date().getFullYear()} {BRAND_NAME}. All rights reserved. Based in Warangal, Telangana.
           </p>
-          <p className="text-[11px] bg-burgundy-900/60 px-3 py-1 rounded border border-gold-500/10">
+          <p className="text-xs bg-burgundy-900/60 px-3 py-1 rounded border border-gold-500/10">
             Catalog Showcase &bull; Selected items marked as Demo
           </p>
         </div>

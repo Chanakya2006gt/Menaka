@@ -1,9 +1,10 @@
-import React, { useMemo } from 'react';
-import { useParams, Link, Navigate } from 'react-router-dom';
+import React, { useMemo, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, MessageCircle, ShieldCheck, Clock, Globe, MapPin, Sparkles } from 'lucide-react';
 import { PRODUCTS } from '../data/products';
 import { ProductCard } from '../components/ui/ProductCard';
-import { buildWhatsAppUrl } from '../data/constants';
+import { buildWhatsAppUrl, BRAND_NAME } from '../data/constants';
+import { NotFoundPage } from './NotFoundPage';
 
 export const ProductDetailPage: React.FC = () => {
   const { productId } = useParams<{ productId: string }>();
@@ -20,8 +21,14 @@ export const ProductDetailPage: React.FC = () => {
     return [...sameCategory, ...others].slice(0, 3);
   }, [product]);
 
+  useEffect(() => {
+    if (product) {
+      document.title = `${product.name} (${product.sku}) | ${BRAND_NAME}`;
+    }
+  }, [product]);
+
   if (!product) {
-    return <Navigate to="/" replace />;
+    return <NotFoundPage />;
   }
 
   const whatsappUrl = buildWhatsAppUrl(product.name, product.sku);
@@ -29,13 +36,13 @@ export const ProductDetailPage: React.FC = () => {
   return (
     <div className="py-8 sm:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      {/* Navigation Breadcrumb */}
+      {/* Navigation Breadcrumb - accessible touch targets */}
       <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-xs font-serif uppercase tracking-wider text-charcoal-500">
-        <Link to="/" className="hover:text-burgundy-900 transition">
+        <Link to="/" className="hover:text-burgundy-900 transition min-h-[44px] inline-flex items-center px-1">
           Home
         </Link>
         <span>/</span>
-        <Link to={`/collection/${product.categoryId}`} className="hover:text-burgundy-900 transition">
+        <Link to={`/collection/${product.categoryId}`} className="hover:text-burgundy-900 transition min-h-[44px] inline-flex items-center px-1">
           {product.categoryName}
         </Link>
         <span>/</span>
@@ -53,6 +60,9 @@ export const ProductDetailPage: React.FC = () => {
             <img
               src={product.image}
               alt={product.name}
+              width="600"
+              height="600"
+              decoding="async"
               className="w-full h-full object-cover object-center"
             />
             {/* Demo Badge */}
@@ -66,7 +76,7 @@ export const ProductDetailPage: React.FC = () => {
             </div>
           </div>
 
-          <p className="text-[11px] text-charcoal-500 font-serif uppercase tracking-widest text-center mt-3">
+          <p className="text-xs text-charcoal-500 font-serif uppercase tracking-widest text-center mt-3">
             Handcrafted in Warangal &bull; 100% BIS Hallmark Gold
           </p>
         </div>
@@ -103,11 +113,11 @@ export const ProductDetailPage: React.FC = () => {
               </p>
             </div>
 
-            {/* Verified Atelier Specifications */}
+            {/* Verified Workshop Specifications */}
             <div className="mt-6 pt-6 border-t border-gold-500/15 grid grid-cols-2 gap-3 text-xs text-charcoal-700">
               <div className="flex items-center gap-2 p-2.5 rounded bg-ivory-100/60 border border-gold-500/10">
                 <Clock className="w-4 h-4 text-gold-600 shrink-0" />
-                <span>Custom ready in 7 days</span>
+                <span>Bespoke Custom Orders</span>
               </div>
               <div className="flex items-center gap-2 p-2.5 rounded bg-ivory-100/60 border border-gold-500/10">
                 <Globe className="w-4 h-4 text-gold-600 shrink-0" />
@@ -119,7 +129,7 @@ export const ProductDetailPage: React.FC = () => {
               </div>
               <div className="flex items-center gap-2 p-2.5 rounded bg-ivory-100/60 border border-gold-500/10">
                 <Sparkles className="w-4 h-4 text-gold-600 shrink-0" />
-                <span>Heritage since 1979</span>
+                <span>Heritage since 1982</span>
               </div>
             </div>
           </div>
@@ -137,7 +147,7 @@ export const ProductDetailPage: React.FC = () => {
               <span>Enquire on WhatsApp</span>
             </a>
 
-            <p className="text-[11px] text-charcoal-500 text-center leading-normal">
+            <p className="text-xs text-charcoal-500 text-center leading-normal">
               Opens WhatsApp with a pre-filled enquiry for <strong className="text-charcoal-700">{product.name}</strong> ({product.sku}). Our master goldsmith will respond directly.
             </p>
           </div>

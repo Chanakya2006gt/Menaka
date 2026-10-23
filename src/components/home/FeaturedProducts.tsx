@@ -15,9 +15,9 @@ export const FeaturedProducts: React.FC = () => {
           <div>
             <div className="flex items-center gap-2">
               <span className="text-xs font-serif uppercase tracking-widest text-gold-600 font-bold">
-                Atelier Showcase
+                Handcrafted Showcase
               </span>
-              <span className="text-[10px] uppercase font-serif tracking-widest bg-burgundy-900 text-gold-300 px-2 py-0.5 rounded border border-gold-400/30">
+              <span className="text-xs uppercase font-serif tracking-widest bg-burgundy-900 text-gold-300 px-2.5 py-1 rounded border border-gold-400/30">
                 Demo Catalog
               </span>
             </div>

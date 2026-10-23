@@ -1,31 +1,70 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, MessageCircle } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Menu, X, MessageCircle, ChevronDown } from 'lucide-react';
 import { CATEGORIES } from '../../data/categories';
 import { buildWhatsAppUrl, BRAND_NAME } from '../../data/constants';
 
 export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [collectionsOpen, setCollectionsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
+  const navigate = useNavigate();
 
-  const closeMenu = () => setMobileMenuOpen(false);
+  const closeMenu = () => {
+    setMobileMenuOpen(false);
+    setCollectionsOpen(false);
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    closeMenu();
+    if (location.pathname === '/') {
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      navigate(`/#${sectionId}`);
+    }
+  };
+
+  // Close dropdown on click outside or escape key
+  useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setCollectionsOpen(false);
+      }
+    };
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setCollectionsOpen(false);
+        setMobileMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleOutsideClick);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
 
   return (
     <header className="sticky top-0 z-40 bg-burgundy-950/95 backdrop-blur-md border-b border-gold-500/20 text-ivory-100 transition-all">
       {/* Top subtle announcement bar */}
       <div className="bg-burgundy-900 text-gold-300 text-xs py-1.5 px-4 text-center tracking-widest uppercase border-b border-gold-500/10 font-serif">
-        <span>100% BIS Hallmark Gold • Ships Across India & USA • Bespoke in 7 Days</span>
+        <span>100% BIS Hallmark Gold • Ships Across India &amp; USA • Bespoke Custom Orders</span>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button - 44px minimum tap target */}
           <div className="flex items-center md:hidden">
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-md text-gold-300 hover:text-white hover:bg-burgundy-900 focus:outline-none focus:ring-2 focus:ring-gold-400"
+              className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-md text-gold-300 hover:text-white hover:bg-burgundy-900 focus:outline-none focus:ring-2 focus:ring-gold-400"
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -37,16 +76,18 @@ export const Navbar: React.FC = () => {
           <div className="flex items-center justify-center md:justify-start flex-1 md:flex-initial">
             <Link to="/" onClick={closeMenu} className="flex items-center space-x-3 group text-center md:text-left">
               <img
-                src="/assets/logo/logo.png"
+                src="/assets/logo/logo.webp"
                 alt={`${BRAND_NAME} Emblem`}
-                className="w-12 h-12 rounded-full border border-gold-400/40 object-cover shadow-sm group-hover:border-gold-400 transition"
+                width="48"
+                height="48"
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-gold-400/40 object-cover shadow-sm group-hover:border-gold-400 transition"
               />
               <div className="flex flex-col">
-                <span className="font-serif text-lg sm:text-xl font-bold tracking-widest text-gold-300 group-hover:text-gold-200 transition">
+                <span className="font-serif text-base sm:text-xl font-bold tracking-widest text-gold-300 group-hover:text-gold-200 transition">
                   MENAKA
                 </span>
-                <span className="font-serif text-[10px] tracking-ultra text-ivory-200/70 uppercase">
-                  Jewellers &bull; Est. 1979
+                <span className="font-serif text-xs tracking-wider text-ivory-200/70 uppercase">
+                  Jewellers &bull; Est. 1982
                 </span>
               </div>
             </Link>
@@ -63,20 +104,32 @@ export const Navbar: React.FC = () => {
               Home
             </Link>
 
-            {/* Quick Categories dropdown / links */}
-            <div className="relative group">
+            {/* Accessible Collections dropdown */}
+            <div className="relative group" ref={dropdownRef}>
               <button 
                 type="button"
-                className="text-sm font-medium tracking-wide uppercase transition hover:text-gold-300 text-ivory-200 flex items-center gap-1 py-2"
+                onClick={() => setCollectionsOpen(!collectionsOpen)}
+                aria-expanded={collectionsOpen}
+                aria-haspopup="true"
+                className="text-sm font-medium tracking-wide uppercase transition hover:text-gold-300 text-ivory-200 flex items-center gap-1 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400"
               >
-                Collections
+                <span>Collections</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${collectionsOpen ? 'rotate-180 text-gold-400' : ''}`} />
               </button>
-              <div className="absolute left-0 mt-1 w-52 bg-burgundy-900 border border-gold-500/20 rounded shadow-xl py-2 hidden group-hover:block transition-all z-50">
+              <div 
+                className={`absolute left-0 mt-1 w-52 bg-burgundy-900 border border-gold-500/20 rounded shadow-xl py-2 transition-all z-50 ${
+                  collectionsOpen ? 'block' : 'hidden group-hover:block'
+                }`}
+                role="menu"
+                aria-orientation="vertical"
+              >
                 {CATEGORIES.map((cat) => (
                   <Link
                     key={cat.id}
                     to={`/collection/${cat.id}`}
-                    className="block px-4 py-2 text-xs uppercase tracking-wider text-ivory-200 hover:text-gold-300 hover:bg-burgundy-800 transition"
+                    onClick={() => setCollectionsOpen(false)}
+                    role="menuitem"
+                    className="block px-4 py-2 text-xs uppercase tracking-wider text-ivory-200 hover:text-gold-300 hover:bg-burgundy-800 transition focus:bg-burgundy-800 focus:text-gold-300 focus:outline-none"
                   >
                     {cat.name}
                   </Link>
@@ -84,28 +137,36 @@ export const Navbar: React.FC = () => {
               </div>
             </div>
 
-            <a
-              href="#heritage"
+            <Link
+              to="/#heritage"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('heritage');
+              }}
               className="text-sm font-medium tracking-wide uppercase transition hover:text-gold-300 text-ivory-200"
             >
               Heritage
-            </a>
+            </Link>
 
-            <a
-              href="#contact"
+            <Link
+              to="/#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('contact');
+              }}
               className="text-sm font-medium tracking-wide uppercase transition hover:text-gold-300 text-ivory-200"
             >
               Contact
-            </a>
+            </Link>
           </nav>
 
-          {/* Header Action: WhatsApp Enquiry */}
+          {/* Header Action: WhatsApp Enquiry (44px min height for mobile tap compliance) */}
           <div className="flex items-center space-x-3">
             <a
               href={buildWhatsAppUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-serif tracking-wide rounded border border-gold-400/60 bg-gold-500/10 hover:bg-gold-500/20 text-gold-300 hover:text-gold-200 transition"
+              className="inline-flex items-center gap-2 px-3.5 py-2 sm:px-4 sm:py-2 min-h-[40px] text-xs sm:text-sm font-serif tracking-wide rounded border border-gold-400/60 bg-gold-500/10 hover:bg-gold-500/20 text-gold-300 hover:text-gold-200 transition focus:outline-none focus:ring-2 focus:ring-gold-400"
               aria-label="Enquire with Menaka Jewellers on WhatsApp"
             >
               <MessageCircle className="w-4 h-4 text-gold-400" />
@@ -124,7 +185,7 @@ export const Navbar: React.FC = () => {
             <Link
               to="/"
               onClick={closeMenu}
-              className="px-3 py-2 rounded text-base font-medium text-ivory-100 hover:bg-burgundy-900 hover:text-gold-300"
+              className="px-3 py-2.5 rounded text-base font-medium text-ivory-100 hover:bg-burgundy-900 hover:text-gold-300"
             >
               Home
             </Link>
@@ -139,7 +200,7 @@ export const Navbar: React.FC = () => {
                     key={cat.id}
                     to={`/collection/${cat.id}`}
                     onClick={closeMenu}
-                    className="px-3 py-1.5 text-sm rounded text-ivory-200 hover:text-gold-300 hover:bg-burgundy-900"
+                    className="px-3 py-2 text-sm rounded text-ivory-200 hover:text-gold-300 hover:bg-burgundy-900"
                   >
                     {cat.name}
                   </Link>
@@ -147,21 +208,27 @@ export const Navbar: React.FC = () => {
               </div>
             </div>
 
-            <a
-              href="#heritage"
-              onClick={closeMenu}
-              className="px-3 py-2 rounded text-base font-medium text-ivory-100 hover:bg-burgundy-900 hover:text-gold-300"
+            <Link
+              to="/#heritage"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('heritage');
+              }}
+              className="px-3 py-2.5 rounded text-base font-medium text-ivory-100 hover:bg-burgundy-900 hover:text-gold-300"
             >
-              Heritage & Atelier
-            </a>
+              Heritage &amp; Craft
+            </Link>
 
-            <a
-              href="#contact"
-              onClick={closeMenu}
-              className="px-3 py-2 rounded text-base font-medium text-ivory-100 hover:bg-burgundy-900 hover:text-gold-300"
+            <Link
+              to="/#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('contact');
+              }}
+              className="px-3 py-2.5 rounded text-base font-medium text-ivory-100 hover:bg-burgundy-900 hover:text-gold-300"
             >
-              Contact & Studio
-            </a>
+              Contact &amp; Studio
+            </Link>
 
             <div className="pt-3">
               <a
@@ -169,7 +236,7 @@ export const Navbar: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={closeMenu}
-                className="w-full flex items-center justify-center gap-2 py-3 bg-burgundy-900 border border-gold-400/60 rounded text-gold-300 font-serif text-sm tracking-wide"
+                className="w-full flex items-center justify-center gap-2 py-3.5 bg-burgundy-900 border border-gold-400/60 rounded text-gold-300 font-serif text-sm tracking-wide"
               >
                 <MessageCircle className="w-5 h-5 text-gold-400" />
                 Connect on WhatsApp

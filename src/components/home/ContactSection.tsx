@@ -17,7 +17,7 @@ export const ContactSection: React.FC = () => {
         
         <div className="text-center max-w-xl mx-auto mb-12">
           <span className="text-xs font-serif uppercase tracking-widest text-gold-600 font-bold block mb-1">
-            Personal Atelier Assistance
+            Direct Customer Assistance
           </span>
           <h2 className="font-serif text-2xl sm:text-4xl font-bold text-burgundy-950">
             Connect With Our Goldsmiths
@@ -56,17 +56,17 @@ export const ContactSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Card 2: Warangal Atelier */}
+          {/* Card 2: Warangal Showroom */}
           <div className="bg-white p-6 rounded-xl border border-gold-500/20 shadow-xs flex flex-col justify-between text-center items-center">
             <div>
               <div className="w-12 h-12 rounded bg-gold-50 border border-gold-200 flex items-center justify-center text-gold-600 mx-auto mb-4">
                 <MapPin className="w-6 h-6" />
               </div>
               <h3 className="font-serif text-base font-semibold text-burgundy-950">
-                Atelier Location
+                Showroom &amp; Workshop
               </h3>
               <p className="text-xs text-charcoal-600 mt-2 leading-relaxed">
-                Based in the historic heritage city of Warangal, Telangana. Crafting elegance since 1979.
+                Based in the historic heritage city of Warangal, Telangana. Crafting elegance since 1982.
               </p>
             </div>
             <div className="mt-6 w-full pt-2">
@@ -103,10 +103,10 @@ export const ContactSection: React.FC = () => {
                 <InstagramIcon className="w-6 h-6 text-burgundy-900" />
               </div>
               <h3 className="font-serif text-base font-semibold text-burgundy-950">
-                Instagram Atelier
+                Official Instagram
               </h3>
               <p className="text-xs text-charcoal-600 mt-2 leading-relaxed">
-                Follow our latest temple jewellery launches, real bridal trousseau reels, and exhibitions.
+                Follow our latest temple jewellery launches, real bridal jewellery videos, and exhibitions.
               </p>
             </div>
             <div className="mt-6 w-full">

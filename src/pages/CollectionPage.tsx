@@ -1,10 +1,11 @@
-import React, { useMemo } from 'react';
-import { useParams, Link, Navigate } from 'react-router-dom';
+import React, { useMemo, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, MessageCircle, Sparkles } from 'lucide-react';
 import { CATEGORIES } from '../data/categories';
 import { PRODUCTS } from '../data/products';
 import { ProductCard } from '../components/ui/ProductCard';
-import { buildWhatsAppUrl } from '../data/constants';
+import { buildWhatsAppUrl, BRAND_NAME } from '../data/constants';
+import { NotFoundPage } from './NotFoundPage';
 
 export const CollectionPage: React.FC = () => {
   const { categoryId } = useParams<{ categoryId: string }>();
@@ -18,8 +19,14 @@ export const CollectionPage: React.FC = () => {
     return PRODUCTS.filter((p) => p.categoryId === currentCategory.id);
   }, [currentCategory]);
 
+  useEffect(() => {
+    if (currentCategory) {
+      document.title = `${currentCategory.name} Jewellery Collection | ${BRAND_NAME}`;
+    }
+  }, [currentCategory]);
+
   if (!currentCategory) {
-    return <Navigate to="/collection/gold" replace />;
+    return <NotFoundPage />;
   }
 
   return (
@@ -29,7 +36,7 @@ export const CollectionPage: React.FC = () => {
       <div className="mb-6">
         <Link
           to="/"
-          className="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider text-charcoal-600 hover:text-burgundy-900 transition font-serif"
+          className="inline-flex items-center gap-1.5 min-h-[44px] text-xs uppercase tracking-wider text-charcoal-600 hover:text-burgundy-900 transition font-serif"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Back to Home</span>
@@ -43,15 +50,19 @@ export const CollectionPage: React.FC = () => {
             <img
               src={currentCategory.thumbnail}
               alt={currentCategory.name}
+              width="80"
+              height="80"
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover rounded"
             />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-[11px] font-serif uppercase tracking-widest text-gold-400 font-bold">
-                Menaka Atelier Collection
+              <span className="text-xs font-serif uppercase tracking-widest text-gold-400 font-bold">
+                Menaka Jewellery Collection
               </span>
-              <span className="text-[10px] font-serif uppercase tracking-widest bg-burgundy-900 text-gold-300 px-2 py-0.5 rounded border border-gold-400/30">
+              <span className="text-xs font-serif uppercase tracking-widest bg-burgundy-900 text-gold-300 px-2.5 py-0.5 rounded border border-gold-400/30">
                 Demo Catalog
               </span>
             </div>
@@ -65,17 +76,17 @@ export const CollectionPage: React.FC = () => {
         </div>
 
         <a
-          href={buildWhatsAppUrl(undefined, undefined)}
+          href={buildWhatsAppUrl(undefined, currentCategory.name)}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full md:w-auto inline-flex items-center justify-center gap-2 py-3 px-5 rounded bg-gold-500 hover:bg-gold-400 text-burgundy-950 font-serif text-xs font-semibold uppercase tracking-wider transition shrink-0 shadow-md"
+          className="w-full md:w-auto inline-flex items-center justify-center gap-2 py-3 px-5 rounded bg-gold-500 hover:bg-gold-400 text-burgundy-950 font-serif text-xs font-semibold uppercase tracking-wider transition shrink-0 shadow-md min-h-[44px]"
         >
           <MessageCircle className="w-4 h-4 fill-current" />
           <span>Bespoke Enquiry</span>
         </a>
       </div>
 
-      {/* Category Pills Navigation */}
+      {/* Category Pills Navigation - 44px min tap target */}
       <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none">
         {CATEGORIES.map((cat) => {
           const isActive = cat.id === currentCategory.id;
@@ -83,7 +94,7 @@ export const CollectionPage: React.FC = () => {
             <Link
               key={cat.id}
               to={`/collection/${cat.id}`}
-              className={`px-4 py-2 rounded text-xs font-serif uppercase tracking-wider whitespace-nowrap transition border ${
+              className={`px-4 py-2.5 min-h-[44px] inline-flex items-center rounded text-xs font-serif uppercase tracking-wider whitespace-nowrap transition border ${
                 isActive
                   ? 'bg-burgundy-900 text-gold-300 border-gold-400 font-semibold shadow-xs'
                   : 'bg-white text-charcoal-700 border-gold-500/20 hover:border-gold-400 hover:text-burgundy-900'
@@ -109,7 +120,7 @@ export const CollectionPage: React.FC = () => {
             More Pieces Coming Soon
           </h3>
           <p className="text-xs text-charcoal-600 mt-2 mb-6">
-            Our atelier crafts custom {currentCategory.name} designs in 7 days. Connect directly with our master craftsmen on WhatsApp.
+            Our master goldsmiths craft custom {currentCategory.name} designs for every special occasion. Connect directly with our team on WhatsApp.
           </p>
           <a
             href={buildWhatsAppUrl(undefined, currentCategory.name)}

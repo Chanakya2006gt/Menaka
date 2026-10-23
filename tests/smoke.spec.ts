@@ -10,13 +10,13 @@ test.describe('Menaka Jewellers Smoke & Feature Suite', () => {
 
     // 2. Verify Hero
     await expect(page.locator('text=Sacred Heritage').first()).toBeVisible();
-    await expect(page.locator('text=Crafting Elegance Since 1979').first()).toBeVisible();
+    await expect(page.locator('text=Crafting Elegance Since 1982').first()).toBeVisible();
 
     // 3. Verify Verified Claims
     await expect(page.locator('text=100% BIS Hallmark Gold').first()).toBeVisible();
-    await expect(page.locator('text=Custom designs ready in 7 days').first()).toBeVisible();
+    await expect(page.locator('text=Bespoke Custom Designs').first()).toBeVisible();
     await expect(page.locator('text=Ships across India & USA').first()).toBeVisible();
-    await expect(page.locator('text=Based in Warangal').first()).toBeVisible();
+    await expect(page.locator('section').filter({ hasText: 'The Menaka Assurance' }).getByText('Based in Warangal')).toBeVisible();
 
     // 4. Verify 6 Category Tiles inside #categories section
     const categories = ['Gold', 'Diamond', 'Bridal', 'Vaddanam', 'Earrings', 'Bangles'];
@@ -75,6 +75,31 @@ test.describe('Menaka Jewellers Smoke & Feature Suite', () => {
     await expect(page.locator('text=Page Not Found')).toBeVisible();
     await page.getByRole('link', { name: 'Return to Catalog Home' }).click();
     await expect(page).toHaveURL('/');
+  });
+
+  test('Unknown product and category IDs display not-found experience', async ({ page }) => {
+    // Unknown product ID
+    await page.goto('/product/non-existent-product-id');
+    await expect(page.locator('text=Page Not Found')).toBeVisible();
+
+    // Unknown category ID
+    await page.goto('/collection/non-existent-category');
+    await expect(page.locator('text=Page Not Found')).toBeVisible();
+  });
+
+  test('Subpage navigation to Heritage section resolves correctly to homepage section', async ({ page }) => {
+    await page.goto('/collection/gold');
+    
+    const hamburger = page.locator('button[aria-label="Toggle navigation menu"]');
+    if (await hamburger.isVisible()) {
+      await hamburger.click();
+      await page.getByRole('link', { name: 'Heritage & Craft' }).click();
+    } else {
+      await page.locator('nav').getByRole('link', { name: 'Heritage' }).first().click();
+    }
+
+    await expect(page).toHaveURL(/.*#heritage/);
+    await expect(page.locator('#heritage')).toBeVisible();
   });
 
 });

@@ -6,32 +6,40 @@
   html {
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
   
   body {
     background-color: #FAF7F2;
     color: #1A1616;
     overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
-  /* Custom scrollbar */
+  /* Completely hide scrollbars on all browsers while preserving scrollability */
   ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    display: none;
+    width: 0;
+    height: 0;
   }
-  ::-webkit-scrollbar-track {
-    background: #FAF7F2;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #C5A059;
-    border-radius: 3px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #8C6C26;
+
+  /* Universal scroll-margin so sticky header never obscures anchor targets */
+  [id] {
+    scroll-margin-top: 6.5rem;
   }
 }
 
 @layer utilities {
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
   .text-gold-gradient {
     background: linear-gradient(135deg, #F2DFAB 0%, #D4AF37 50%, #A9832E 100%);
     -webkit-background-clip: text;

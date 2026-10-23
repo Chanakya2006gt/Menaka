@@ -32,7 +32,10 @@ export const CategoryGrid: React.FC = () => {
               <img
                 src={cat.thumbnail}
                 alt={cat.name}
+                width="300"
+                height="300"
                 loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover rounded group-hover:scale-105 transition-transform duration-500"
               />
             </div>
@@ -41,7 +44,7 @@ export const CategoryGrid: React.FC = () => {
               {cat.name}
             </h3>
 
-            <span className="inline-flex items-center gap-1 text-[11px] uppercase tracking-wider text-charcoal-500 group-hover:text-gold-700 transition mt-1 font-serif">
+            <span className="inline-flex items-center gap-1 text-xs uppercase tracking-wider text-charcoal-500 group-hover:text-gold-700 transition mt-1 font-serif">
               <span>View Pieces</span>
               <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
             </span>

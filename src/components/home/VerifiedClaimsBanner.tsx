@@ -24,7 +24,7 @@ export const VerifiedClaimsBanner: React.FC = () => {
     <section className="bg-ivory-100 border-y border-gold-500/20 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-6">
-          <span className="text-[11px] font-serif uppercase tracking-widest text-burgundy-900 font-bold">
+          <span className="text-xs font-serif uppercase tracking-widest text-burgundy-900 font-bold">
             The Menaka Assurance
           </span>
           <h2 className="font-serif text-xl sm:text-2xl font-bold text-burgundy-950 mt-1">

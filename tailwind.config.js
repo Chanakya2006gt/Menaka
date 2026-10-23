@@ -44,6 +44,15 @@ export default {
         serif: ['Cinzel', 'Playfair Display', 'Cormorant Garamond', 'Georgia', 'serif'],
         sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
       },
+      aspectRatio: {
+        '4/5': '4 / 5',
+      },
+      boxShadow: {
+        'xs': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+      },
+      scale: {
+        '98': '0.98',
+      },
       letterSpacing: {
         widest: '.2em',
         ultra: '.28em',

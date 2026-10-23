@@ -110,3 +110,52 @@ This document is the historical source of truth for architectural choices, desig
 6. `git init -b main && git add . && git commit -m "feat: Menaka Jewellers mobile-first catalog website"`
 7. `gh repo create Menaka --public --source=. --remote=origin --push`
 8. `git checkout -b dev && git push -u origin dev`
+
+---
+
+## [Phase 6: Evidence-Based Frontend Audit & Remediation]
+- **Date**: 2026-10-23
+- **Branch**: `dev`
+- **Auditor Role**: Senior Frontend Engineer (React, TypeScript, Tailwind CSS, Mobile UX, WCAG 2.2 Accessibility, Performance).
+
+### Remediation Details & Architecture Choices:
+1. **WhatsApp Contact Configuration (Section A)**:
+   - Fixed parameter-handling bug in `src/data/constants.ts` (`buildWhatsAppUrl`) where passing category context resulted in an unhandled fallback. Now supports product + SKU, category-level inquiries, and general studio inquiries.
+   - Preserved `919876543210` as an explicitly documented demo placeholder awaiting owner verification.
+2. **Business Claims & Founding Year Consistency (Section B)**:
+   - Founding year officially reconciled to **1982** (matching the official shop emblem and Instagram). All 15 occurrences of 1979 across the codebase, metadata, and test assertions updated to 1982.
+   - User confirmed official Instagram claims: "100% BIS Hallmark Gold" and "Ships across India & USA" are verified.
+   - User clarified that "7 day delivery / custom designs in 7 days" is NOT verified: completely purged and neutralized to "Bespoke Custom Designs" / "Bespoke Custom Orders" across all 9 source files, OpenGraph metadata, and Playwright tests.
+   - Demo product tags upgraded to readable `text-xs` badges across all views.
+3. **Navigation & Routing (Section C)**:
+   - Fixed broken hash navigation from subpages (`/product/*`, `/collection/*`) to `#heritage` and `#contact`. Implemented `scrollToSection` and updated `ScrollToTop.tsx` with hash-aware scroll targeting.
+   - Replaced silent root redirects on unknown category or product IDs with dedicated `NotFoundPage` (404) views.
+4. **Tailwind CSS & Styling Correctness (Section D)**:
+   - Extended `tailwind.config.js` with `aspectRatio: { '4/5': '4 / 5' }`, `boxShadow: { 'xs': '...' }`, and `scale: { '98': '0.98' }`.
+   - Added `.scrollbar-none` CSS utility in `src/styles/index.css`.
+5. **Mobile Header & Viewport Actions (Section E)**:
+   - Reduced mobile navbar height to `h-16 sm:h-20` (64px mobile), saving 16px of critical above-the-fold vertical space.
+   - Conditioned `WhatsAppFAB.tsx` to automatically hide on mobile Product Detail Pages (`/product/*`) to eliminate competing CTAs and touch collision.
+6. **Touch Targets & Accessibility (Section F)**:
+   - Enlarged hamburger button to `44x44px` (`min-w-[44px] min-h-[44px]`).
+   - Enlarged ProductCard WhatsApp icon button to `44x44px` (`w-11 h-11`).
+   - Enlarged View Piece button and header enquire buttons to `min-h-[44px]`.
+   - Added keyboard accessibility to desktop Collections dropdown (`aria-expanded`, `aria-haspopup`, outside click, and Escape listener).
+7. **Typography & Readability (Section G)**:
+   - Upgraded all sub-12px text (`text-[10px]`, `text-[11px]`) to legible `text-xs` (12px).
+8. **Image Assets & Performance (Section H)**:
+   - Converted 18.08MB of raw PNGs to modern WebP (2.08MB total payload, 88.5% reduction) with lossless/high-fidelity PIL compression.
+   - Added explicit `width`, `height`, and `decoding="async"` attributes to prevent Cumulative Layout Shift (CLS).
+9. **Production Build & Test Verification (Section I)**:
+   - `npm run build` executed cleanly (Exit code 0, 0 TS errors).
+   - `npx playwright test` executed: 18/18 tests passed across `desktop-chrome` and `mobile-chrome`.
+10. **SEO, OpenGraph & Security (Section J & K)**:
+    - Injected OpenGraph and Twitter Card tags in `index.html`.
+    - Added dynamic `document.title` hooks to `HomePage`, `CollectionPage`, `ProductDetailPage`, and `NotFoundPage`.
+    - Created `public/_redirects` for SPA fallback routing.
+    - Created `public/_headers` with Content Security Policy, X-Frame-Options: DENY, X-Content-Type-Options: nosniff, Referrer-Policy, and Permissions-Policy.
+11. **Mobile Scrollbar Removal (Section L)**:
+    - Completely hid scrollbars across all viewports via `scrollbar-width: none; -ms-overflow-style: none; ::-webkit-scrollbar { display: none; }` while preserving native touch and mouse scrolling.
+12. **Local Vocabulary Simplification**:
+    - Completely purged fancy/foreign jargon ('atelier', 'trousseau', 'concierge', 'sanctuary') across all views.
+    - Replaced with clear, natural, relatable terminology ('Showroom & Workshop', 'Handcrafted Showcase', 'Master Goldsmiths', 'Bridal Jewellery', 'Direct Enquiries') suited for local South Indian customers.

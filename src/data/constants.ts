@@ -6,17 +6,18 @@
  */
 
 export const BRAND_NAME = "Menaka Jewellers";
-export const BRAND_TAGLINE = "Crafting elegance since 1979";
+export const BRAND_TAGLINE = "Crafting elegance since 1982";
 export const BRAND_ORIGIN = "Warangal, Telangana";
 export const INSTAGRAM_HANDLE = "@menakajewellers__";
 export const INSTAGRAM_URL = "https://www.instagram.com/menakajewellers__/";
 
 /**
  * WhatsApp Business Configuration
- * Placeholder number: Replace with active Menaka Jewellers business contact number
+ * Placeholder number: Replace with active Menaka Jewellers business contact number prior to launch.
  * Format: Country code without leading '+' or special characters (e.g. 919876543210 for India)
+ * NOTE FOR LAUNCH: Set this value to the verified Menaka Jewellers business number.
  */
-export const WHATSAPP_PHONE_NUMBER = "919876543210"; // REPLACE_WITH_ACTUAL_PHONE_NUMBER
+export const WHATSAPP_PHONE_NUMBER = "919876543210"; // DEMO_PLACEHOLDER_NUMBER
 
 export interface VerifiedClaim {
   id: string;
@@ -28,7 +29,7 @@ export interface VerifiedClaim {
 export const VERIFIED_CLAIMS: VerifiedClaim[] = [
   {
     id: "heritage",
-    title: "Crafting elegance since 1979",
+    title: "Crafting elegance since 1982",
     subtitle: "Over 4 decades of temple jewellery heritage",
     iconName: "Sparkles",
   },
@@ -40,9 +41,9 @@ export const VERIFIED_CLAIMS: VerifiedClaim[] = [
   },
   {
     id: "custom-design",
-    title: "Custom designs ready in 7 days",
+    title: "Bespoke Custom Designs",
     subtitle: "Handcrafted by our master artisans",
-    iconName: "Clock",
+    iconName: "Sparkles",
   },
   {
     id: "shipping",
@@ -60,11 +61,14 @@ export const VERIFIED_CLAIMS: VerifiedClaim[] = [
 
 /**
  * Builds encoded WhatsApp enquiry URL
+ * Supports product name + SKU, or category context, with fallback to general enquiry
  */
-export function buildWhatsAppUrl(productName?: string, sku?: string): string {
+export function buildWhatsAppUrl(productName?: string, skuOrCategory?: string): string {
   let message = "Namaste Menaka Jewellers, I am browsing your catalog and would like to enquire about your jewellery collection.";
   if (productName) {
-    message = `Namaste Menaka Jewellers, I am interested in enquiring about "${productName}"${sku ? ` (Item Code: ${sku})` : ""}. Could you please share more details and availability?`;
+    message = `Namaste Menaka Jewellers, I am interested in enquiring about "${productName}"${skuOrCategory ? ` (Item Code: ${skuOrCategory})` : ""}. Could you please share more details and availability?`;
+  } else if (skuOrCategory) {
+    message = `Namaste Menaka Jewellers, I am browsing your ${skuOrCategory} collection and would like to enquire about custom designs and availability.`;
   }
   return `https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
 }

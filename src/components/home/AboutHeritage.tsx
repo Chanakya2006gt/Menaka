@@ -15,15 +15,15 @@ export const AboutHeritage: React.FC = () => {
 
             <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold leading-tight text-ivory-50">
               Crafting Elegance <br />
-              <span className="text-gold-gradient">Since 1979.</span>
+              <span className="text-gold-gradient">Since 1982.</span>
             </h2>
 
             <p className="text-sm sm:text-base text-ivory-200/80 font-light leading-relaxed">
-              For more than four decades, Menaka Jewellers has been an esteemed sanctuary for authentic South Indian temple jewellery. Rooted in the heritage city of Warangal, our atelier draws inspiration from ancient temple sculpture, sacred iconography, and royal bridal traditions.
+              For more than four decades, Menaka Jewellers has been a trusted name for authentic South Indian temple jewellery. Rooted in the heritage city of Warangal, our master craftsmen draw inspiration from ancient temple sculpture, sacred traditions, and classic South Indian bridal designs.
             </p>
 
             <p className="text-sm sm:text-base text-ivory-200/80 font-light leading-relaxed">
-              Every creation is cast in certified 100% BIS Hallmark Gold and finished by hereditary goldsmiths. Whether an heirloom temple haaram or a contemporary diamond collar, we bring your vision to life with custom designs ready in 7 days.
+              Every creation is cast in certified 100% BIS Hallmark Gold and finished by hereditary goldsmiths. Whether an heirloom temple haaram or a contemporary diamond collar, we bring your vision to life with bespoke handcrafted designs.
             </p>
 
             {/* Verified highlights list */}
@@ -34,7 +34,7 @@ export const AboutHeritage: React.FC = () => {
               </div>
               <div className="flex items-center gap-2.5 text-xs sm:text-sm text-ivory-200">
                 <CheckCircle2 className="w-4 h-4 text-gold-400 shrink-0" />
-                <span>Custom Designs Ready in 7 Days</span>
+                <span>Bespoke Handcrafted Designs</span>
               </div>
               <div className="flex items-center gap-2.5 text-xs sm:text-sm text-ivory-200">
                 <CheckCircle2 className="w-4 h-4 text-gold-400 shrink-0" />
@@ -42,7 +42,7 @@ export const AboutHeritage: React.FC = () => {
               </div>
               <div className="flex items-center gap-2.5 text-xs sm:text-sm text-ivory-200">
                 <CheckCircle2 className="w-4 h-4 text-gold-400 shrink-0" />
-                <span>Authentic Warangal Atelier Legacy</span>
+                <span>Traditional Warangal Goldsmith Heritage</span>
               </div>
             </div>
 
@@ -60,10 +60,14 @@ export const AboutHeritage: React.FC = () => {
           </div>
 
           <div className="lg:col-span-5 flex justify-center">
-            <div className="relative w-full max-w-sm aspect-4/5 rounded-xl overflow-hidden border-2 border-gold-400/40 p-1.5 bg-burgundy-900/80 shadow-2xl">
+            <div className="relative w-full max-w-sm aspect-[4/5] rounded-xl overflow-hidden border-2 border-gold-400/40 p-1.5 bg-burgundy-900/80 shadow-2xl">
               <img
-                src="/assets/products/temple-peacock-necklace.png"
+                src="/assets/products/temple-peacock-necklace.webp"
                 alt="Sacred Temple Jewellery Heritage by Menaka Jewellers"
+                width="600"
+                height="750"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover rounded-lg"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-burgundy-950/80 via-transparent to-transparent flex items-end p-4">
