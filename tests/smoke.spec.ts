@@ -12,11 +12,12 @@ test.describe('Menaka Jewellers Smoke & Feature Suite', () => {
     await expect(page.locator('text=Sacred Heritage').first()).toBeVisible();
     await expect(page.locator('text=Est. 1982').first()).toBeVisible();
 
-    // 3. Verify Verified Claims
-    await expect(page.locator('text=100% BIS Hallmark Gold').first()).toBeVisible();
-    await expect(page.locator('text=Bespoke Custom Designs').first()).toBeVisible();
-    await expect(page.locator('text=Ships across India & USA').first()).toBeVisible();
-    await expect(page.locator('section').filter({ hasText: 'The Menaka Assurance' }).getByText('Based in Warangal')).toBeVisible();
+    // 3. Verify Verified Claims in Assurance Section
+    const assurance = page.locator('section').filter({ hasText: 'The Menaka Assurance' });
+    await expect(assurance.getByText('100% BIS Hallmark Gold')).toBeVisible();
+    await expect(assurance.getByText('Bespoke Custom Designs')).toBeVisible();
+    await expect(assurance.getByText('Ships across India & USA')).toBeVisible();
+    await expect(assurance.getByText('Based in Warangal')).toBeVisible();
 
     // 4. Verify 6 Category Tiles inside #categories section
     const categories = ['Gold', 'Diamond', 'Bridal', 'Vaddanam', 'Earrings', 'Bangles'];

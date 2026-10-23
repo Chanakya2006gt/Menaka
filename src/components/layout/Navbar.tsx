@@ -52,7 +52,7 @@ export const Navbar: React.FC = () => {
   return (
     <header className="sticky top-0 z-40 bg-burgundy-950/95 backdrop-blur-md border-b border-gold-500/20 text-ivory-100 transition-all">
       {/* Top subtle announcement bar */}
-      <div className="bg-burgundy-900 text-gold-300 text-xs py-1.5 px-4 text-center tracking-widest uppercase border-b border-gold-500/10 font-serif">
+      <div className="hidden sm:block bg-burgundy-900 text-gold-300 text-xs py-1.5 px-4 text-center tracking-widest uppercase border-b border-gold-500/10 font-serif">
         <span>100% BIS Hallmark Gold • Ships Across India &amp; USA • Bespoke Custom Orders</span>
       </div>
 
