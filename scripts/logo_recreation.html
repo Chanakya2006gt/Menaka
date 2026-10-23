@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1024px;
+      height: 1024px;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-container {
+      width: 960px;
+      height: 960px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 45%, #461424 0%, #360E1B 65%, #240811 100%);
+      box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.3), inset 0 0 60px rgba(0,0,0,0.5);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px;
+      border: 8px solid #C5A059;
+    }
+    .inner-ring {
+      position: absolute;
+      inset: 18px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(229, 199, 120, 0.4);
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-container">
+    <div class="inner-ring"></div>
+    
+    <!-- Sacred Emblem: Shankha, Namam, Chakra, Base -->
+    <svg width="440" height="340" viewBox="0 0 440 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#F9F0D9"/>
+          <stop offset="35%" stop-color="#E5C778"/>
+          <stop offset="70%" stop-color="#C5A059"/>
+          <stop offset="100%" stop-color="#9A782D"/>
+        </linearGradient>
+        <linearGradient id="goldShine" x1="0%" y1="100%" x2="0%" y2="0%">
+          <stop offset="0%" stop-color="#C5A059"/>
+          <stop offset="50%" stop-color="#FDFBF7"/>
+          <stop offset="100%" stop-color="#D4AF37"/>
+        </linearGradient>
+        <linearGradient id="rubyRed" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#D92534"/>
+          <stop offset="100%" stop-color="#800D18"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Center: Tirupati Balaji Namam (Thiruman) -->
+      <g transform="translate(180, 20)">
+        <!-- Namam Base and U-Wings -->
+        <path d="M 40,110 C 35,75 22,40 10,25 C 18,35 24,55 26,85 C 28,105 34,120 40,135 C 46,120 52,105 54,85 C 56,55 62,35 70,25 C 58,40 45,75 40,110 Z" fill="url(#goldGrad)" stroke="#E5C778" stroke-width="1.5"/>
+        
+        <!-- Left Wing Outer Flare -->
+        <path d="M 12,28 C 8,15 15,5 22,0 C 20,10 18,20 22,30 Z" fill="url(#goldGrad)"/>
+        <!-- Right Wing Outer Flare -->
+        <path d="M 68,28 C 72,15 65,5 58,0 C 60,10 62,20 58,30 Z" fill="url(#goldGrad)"/>
+
+        <!-- Central Red Tilakam Streak (Kasturi Tilakam) -->
+        <path d="M 37,35 C 37,25 40,10 40,0 C 40,10 43,25 43,35 C 43,65 42,90 40,115 C 38,90 37,65 37,35 Z" fill="url(#rubyRed)" stroke="#E5C778" stroke-width="1"/>
+        <circle cx="40" cy="120" r="3.5" fill="url(#goldGrad)"/>
+        <polygon points="40,126 36,134 44,134" fill="url(#goldGrad)"/>
+      </g>
+
+      <!-- Left: Divine Shankha (Sacred Conch Shell) -->
+      <g transform="translate(45, 30)">
+        <!-- Flame Crown atop Conch -->
+        <path d="M 50,0 C 42,12 36,25 42,38 C 48,26 55,20 50,0 Z" fill="url(#goldGrad)"/>
+        <path d="M 38,10 C 32,20 30,30 36,40 C 39,30 42,24 38,10 Z" fill="url(#goldGrad)"/>
+        <path d="M 62,10 C 68,20 70,30 64,40 C 61,30 58,24 62,10 Z" fill="url(#goldGrad)"/>
+
+        <!-- Conch Shell Body -->
+        <ellipse cx="50" cy="75" rx="30" ry="38" fill="url(#goldGrad)" stroke="#FDFBF7" stroke-width="1.5"/>
+        <!-- Conch Spiral Ribs -->
+        <path d="M 30,65 Q 50,85 70,65" stroke="#360E1B" stroke-width="2.5" fill="none"/>
+        <path d="M 32,78 Q 50,98 68,78" stroke="#360E1B" stroke-width="2.5" fill="none"/>
+        <path d="M 36,92 Q 50,110 64,92" stroke="#360E1B" stroke-width="2.5" fill="none"/>
+        <!-- Conch Tip/Spout pointing down -->
+        <path d="M 44,112 C 46,125 50,135 50,140 C 50,135 54,125 56,112 Z" fill="url(#goldGrad)"/>
+      </g>
+
+      <!-- Right: Divine Sudarshana Chakra (Sacred Discus) -->
+      <g transform="translate(295, 30)">
+        <!-- Flame Crown atop Chakra -->
+        <path d="M 50,0 C 42,12 36,25 42,38 C 48,26 55,20 50,0 Z" fill="url(#goldGrad)"/>
+        <path d="M 38,10 C 32,20 30,30 36,40 C 39,30 42,24 38,10 Z" fill="url(#goldGrad)"/>
+        <path d="M 62,10 C 68,20 70,30 64,40 C 61,30 58,24 62,10 Z" fill="url(#goldGrad)"/>
+
+        <!-- Outer Flaming Spokes -->
+        <circle cx="50" cy="75" r="35" stroke="url(#goldGrad)" stroke-width="4" stroke-dasharray="8 6" fill="none"/>
+        <!-- Inner Ring -->
+        <circle cx="50" cy="75" r="28" fill="url(#goldGrad)" stroke="#FDFBF7" stroke-width="1.5"/>
+        <!-- Center Hub -->
+        <circle cx="50" cy="75" r="12" fill="#360E1B" stroke="url(#goldGrad)" stroke-width="2"/>
+        <circle cx="50" cy="75" r="5" fill="url(#goldGrad)"/>
+        <!-- Rays -->
+        <line x1="50" y1="48" x2="50" y2="102" stroke="#360E1B" stroke-width="2"/>
+        <line x1="23" y1="75" x2="77" y2="75" stroke="#360E1B" stroke-width="2"/>
+        <line x1="31" y1="56" x2="69" y2="94" stroke="#360E1B" stroke-width="2"/>
+        <line x1="31" y1="94" x2="69" y2="56" stroke="#360E1B" stroke-width="2"/>
+        <!-- Chakra Stem pointing down -->
+        <path d="M 44,110 C 46,125 50,135 50,140 C 50,135 54,125 56,110 Z" fill="url(#goldGrad)"/>
+      </g>
+
+      <!-- Symmetrical Intricate Temple Lotus Repoussé Throne Base -->
+      <g transform="translate(0, 160)">
+        <!-- Center Lotus Crest -->
+        <path d="M 220,5 C 210,25 190,45 160,50 C 190,55 210,75 220,110 C 230,75 250,55 280,50 C 250,45 230,25 220,5 Z" fill="url(#goldGrad)" stroke="#FDFBF7" stroke-width="1"/>
+        
+        <!-- Left Flourish Wings -->
+        <path d="M 160,50 C 120,40 80,60 50,90 C 80,85 110,80 140,95 C 110,105 80,125 60,150 C 90,135 130,125 170,120 C 150,135 140,155 145,175 C 160,150 185,135 220,130 C 185,120 165,85 160,50 Z" fill="url(#goldGrad)" opacity="0.95"/>
+
+        <!-- Right Flourish Wings (Mirror) -->
+        <path d="M 280,50 C 320,40 360,60 390,90 C 360,85 330,80 300,95 C 330,105 360,125 380,150 C 350,135 310,125 270,120 C 290,135 300,155 295,175 C 280,150 255,135 220,130 C 255,120 275,85 280,50 Z" fill="url(#goldGrad)" opacity="0.95"/>
+
+        <!-- Fine filigree scrollwork dots and gems -->
+        <circle cx="220" cy="55" r="7" fill="url(#rubyRed)" stroke="url(#goldGrad)" stroke-width="2"/>
+        <circle cx="160" cy="85" r="5" fill="url(#goldGrad)"/>
+        <circle cx="280" cy="85" r="5" fill="url(#goldGrad)"/>
+        <circle cx="105" cy="115" r="4.5" fill="url(#goldGrad)"/>
+        <circle cx="335" cy="115" r="4.5" fill="url(#goldGrad)"/>
+
+        <!-- Bottom Base Platform Arch -->
+        <path d="M 120,165 Q 220,195 320,165 Q 220,180 120,165 Z" fill="url(#goldGrad)"/>
+      </g>
+    </svg>
+
+    <!-- Typography: Menaka Jewellers SINCE 1979 -->
+    <div style="margin-top: 25px; text-align: center; display: flex; flex-direction: column; align-items: center;">
+      <h1 style="
+        font-family: 'Playfair Display', 'Cinzel', serif;
+        font-size: 72px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        background: linear-gradient(180deg, #FFF6DD 0%, #E5C778 35%, #C5A059 70%, #9B7829 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 4px 18px rgba(0,0,0,0.6);
+        line-height: 1.1;
+      ">
+        Menaka Jewellers
+      </h1>
+
+      <div style="
+        margin-top: 18px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      ">
+        <div style="width: 50px; height: 1.5px; background: linear-gradient(90deg, transparent, #C5A059);"></div>
+        <span style="
+          font-family: 'Cinzel', serif;
+          font-size: 22px;
+          font-weight: 600;
+          letter-spacing: 0.38em;
+          color: #E5C778;
+          text-transform: uppercase;
+        ">
+          SINCE 1979
+        </span>
+        <div style="width: 50px; height: 1.5px; background: linear-gradient(90deg, #C5A059, transparent);"></div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
