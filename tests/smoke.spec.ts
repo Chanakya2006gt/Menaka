@@ -10,7 +10,7 @@ test.describe('Menaka Jewellers Smoke & Feature Suite', () => {
 
     // 2. Verify Hero
     await expect(page.locator('text=Sacred Heritage').first()).toBeVisible();
-    await expect(page.locator('text=Crafting Elegance Since 1982').first()).toBeVisible();
+    await expect(page.locator('text=Est. 1982').first()).toBeVisible();
 
     // 3. Verify Verified Claims
     await expect(page.locator('text=100% BIS Hallmark Gold').first()).toBeVisible();
